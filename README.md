@@ -17,7 +17,7 @@ En este apartado se especifican lo que el usuario requiere para instalar y proba
 
 -IDE de desarrollo
 
-Conector de SQL
+-Conector de SQL
 
 -JDK
 
@@ -78,19 +78,19 @@ Paso 9. Seleccionamos la librería mssql-jdbc-9.2.1.jre.8
 ## Construido con 🛠️
 
 
-Git: Encargado del controlador de versiones y tareas.
+* Git: Encargado del controlador de versiones y tareas.
 
-Java (https://netbeans.org/downloads/8.2/rc/): Lenguaje de programación.
+* Java (https://netbeans.org/downloads/8.2/rc/): Lenguaje de programación.
 
-SQL (https://www.microsoft.com/es-es/sql-server/sql-server-downloads): Gestor de base de datos.
+* SQL (https://www.microsoft.com/es-es/sql-server/sql-server-downloads): Gestor de base de datos.
 
-Conector de SQL(https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15): Driver para usar SQL en Java. 
+* Conector de SQL(https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15): Driver para usar SQL en Java. 
 
 ## Contribuyendo 🖇️
 
-Carolina Hernández Campos B53356
+* Carolina Hernández Campos B53356
 
-Christian Cordero Fallas B72283
+* Christian Cordero Fallas B72283
 
 ## Wiki 📖
 
@@ -98,23 +98,21 @@ Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](ht
 
 ## Versionado 📌
 
--Version jdk: 1.8.0_261
+* Version jdk: 1.8.0_261
 
--Version SQL Managment Studio 2019: 15.0.18
+* Version SQL Managment Studio 2019: 15.0.18
 
--Version IDE: 12.0
+* Version IDE: 12.0
 
--Version conectorSQL: 9.2.1.jrd8
+* Version conectorSQL: 9.2.1.jrd8
 
 ## Autores ✒️
 
-* 
-**Carolina Hernández Campos B53356**
+* **Carolina Hernández Campos**
 
 [CarolinaHdz]( https://github.com/CarolinaHdz)
 
-* 
-**Christian Cordero Fallas B72283**
+* **Christian Cordero Fallas**
 
 [corderofallasc]( https://github.com/corderofallasc)
 
@@ -125,7 +123,8 @@ Este proyecto no cuenta con ninguna licencia
 
 ## Expresiones de Gratitud 🎁
 
-•	Agradecimiento a Jacob Avila Camacho cuyo código ha sido consulado: https://youtu.be/wjIXaPW1dy8
-•	Agradecimiento a DiscoDurodeRoer cuyo código ha sido consulado: https://www.youtube.com/watch?v=gc6szh6kp8Q
+* Agradecimiento a Jacob Avila Camacho cuyo código ha sido consulado: https://youtu.be/wjIXaPW1dy8
+
+* Agradecimiento a DiscoDurodeRoer cuyo código ha sido consulado: https://www.youtube.com/watch?v=gc6szh6kp8Q
 
 
