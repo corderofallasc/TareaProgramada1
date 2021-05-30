@@ -28,7 +28,7 @@ Paso 1. Ir a la página oficial de descarga y seleccionar el IDE Apache Netbeans
 	En la parte derecha superior, se selecciona el idioma o bien utilizar el archivo zip.
    	Haga clic en el botón de descarga. 
 	
-![Imagen de Netbeans](https://github.com/corderofallasc/TareaProgramada1/tree/Carolina_Branch/Imagenes/1.jpg)
+![Imagen de Netbeans](https://raw/corderofallasc/TareaProgramada1/tree/Carolina_Branch/Imagenes/1.jpg)
 
 Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos a la página oficial de java JDK 11. Se da clic en descargar, se ejecuta el instalador y le aceptar y continuar hasta que finalice.
 	Paso 3. Descomprimir la carpeta de descarga de Netbeans y pasar la carpeta Descomprimida a Disco Local C.
