@@ -38,7 +38,8 @@ Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos
 
 	Creación del repositorio en Git Hub
 
-	Paso 1. Ir a la esquina derecha superior de la página y selecciona Repositorio Nuevo. Se la da un nombre y se puede agregar una descripción.
+	Paso 1. Ir a la esquina derecha superior de la página y selecciona Repositorio Nuevo.
+	Se la da un nombre y se puede agregar una descripción.
 	Paso 2. Selecciona iniciar repositorio con un README y da clic en crear repositorio.
 
 
@@ -54,7 +55,8 @@ Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos
 
 
 	
-	Paso 2. Debe poner el link del repositorio y las credenciales del mismo, así como poner la ruta donde se clonará el repositorio, a continuación, dar clic en “Next” y por último en el botón “Finish” 
+	Paso 2. Debe poner el link del repositorio y las credenciales del mismo, 
+	así como poner la ruta donde se clonará el repositorio, a continuación, dar clic en “Next” y por último en el botón “Finish” 
 	
 
 	Creación de la base de datos
@@ -75,37 +77,46 @@ Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
 
 Git: Encargado del controlador de versiones y tareas.
+
 Java (https://netbeans.org/downloads/8.2/rc/): Lenguaje de programación.
+
 SQL (	https://www.microsoft.com/es-es/sql-server/sql-server-downloads): Gestor de base de datos.
+
 Conector de SQL(https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15): Driver para usar SQL en Java. 
 
 ## Contribuyendo 🖇️
 
 Carolina Hernández Campos B53356
+
 Christian Cordero Fallas B72283
+
 ## Wiki 📖
 
 Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
 
 ## Versionado 📌
 
-•	Version jdk:8.0
-•	Version SQL Managment Studio: 
-•	Version IDE: 11.3
-•	Version conectorSQL: 5.1
+•	Version jdk: 1.8.0_261
+
+•	Version SQL Managment Studio 2019: 15.0.18
+
+•	Version IDE: 12.0
+
+•	Version conectorSQL: 9.2.1.jrd8
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
 * 
 **Carolina Hernández Campos B53356**
+
 [CarolinaHdz]( https://github.com/CarolinaHdz)
+
 * 
 **Christian Cordero Fallas B72283**
+
 [corderofallasc]( https://github.com/corderofallasc)
 
 
