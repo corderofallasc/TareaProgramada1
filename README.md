@@ -27,13 +27,14 @@ Paso 1. Ir a la página oficial de descarga y seleccionar el IDE Apache Netbeans
 	Página: (https://netbeans.org/downloads/8.2/rc/) 
 	En la parte derecha superior, se selecciona el idioma o bien utilizar el archivo zip.
    	Haga clic en el botón de descarga. 
-
+	
+![https://github.com/corderofallasc/TareaProgramada1/edit/Carolina_Branch/Imagenes/1.jpg]
 
 Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos a la página oficial de java JDK 11. Se da clic en descargar, se ejecuta el instalador y le aceptar y continuar hasta que finalice.
 	Paso 3. Descomprimir la carpeta de descarga de Netbeans y pasar la carpeta Descomprimida a Disco Local C.
 	Ve a la pagina: https://www.oracle.com/technetwork/es/java/javase/downloads/index.html 
 
-###Creación del repositorio en Git Hub
+### Creación del repositorio en Git Hub
 
 Paso 1. Ir a la esquina derecha superior de la página y selecciona Repositorio Nuevo.
 	Se la da un nombre y se puede agregar una descripción.
@@ -42,7 +43,7 @@ Paso 2. Selecciona iniciar repositorio con un README y da clic en crear reposito
 
 
 
-###Clonar el repositorio 
+### Clonar el repositorio 
 
 Paso 1. Abre Netbeans y se dirige a la navegación Team, se dirige a la ruta Git/Clone/
 
@@ -51,7 +52,7 @@ Paso 2. Debe poner el link del repositorio y las credenciales del mismo,
 	así como poner la ruta donde se clonará el repositorio, a continuación, dar clic en “Next” y por último en el botón “Finish” 
 	
 
-###Creación de la base de datos
+### Creación de la base de datos
 
 Paso 1. Instalar gestor de base de datos SQL Server, en el siguiente link de descarga: 
 		https://www.microsoft.com/es-es/sql-server/sql-server-downloads
