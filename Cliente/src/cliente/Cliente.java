@@ -13,43 +13,56 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
 public class Cliente extends Thread {
 
-    int fileSize;
+    String filePath = "";
+    long fileSize;
+    String userName;
+
+    public Cliente(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     public void run() {
+        //buffer donde se almacenara los mensajes
+//            byte[] buffer = new byte[5000000];
         //puerto del servidor
         final int PUERTO_SERVIDOR = 5000;
-
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(fileChooser);
+        filePath = fileChooser.getSelectedFile().getAbsolutePath();
+//        filePath = "c:/Pics/author-image1.jpg";
+        byte[] buffer = new byte[100000];
+        byte[] buffer2 = new byte[100000];
         try {
-    //Se envía el tamaño del archivo
-            //se obtiene el tamaño original del archivo
-            fileSize = fileSize("c:/Pics/author-image1.jpg");
+            fileSize = fileSize(filePath);
 
-            //buffer donde se almacenara los mensajes
-            byte[] buffer = new byte[fileSize];
-//            buffer = extractBytes("c:/Pics/author-image1.jpg");
             //Obtengo la localizacion de localhost
             InetAddress direccionServidor = InetAddress.getByName("localhost");
 
             //Creo el socket de UDP
             DatagramSocket socketUDP = new DatagramSocket();
 
-            String mensaje = Integer.toString(fileSize);
+            String mensaje = userName;
 
             //Convierto el mensaje a bytes
-            buffer = mensaje.getBytes();
+            buffer = extractBytes(filePath);
 
             //Creo un datagrama
             DatagramPacket pregunta = new DatagramPacket(buffer, buffer.length, direccionServidor, PUERTO_SERVIDOR);
 
             //Lo envio con send
-            System.out.println("Envío el tamaño del archivo");
+            System.out.println("El usuario " + userName + " envío el archivo");
             socketUDP.send(pregunta);
-//__________Termina primer envío______________________________//
+            
+            buffer=mensaje.getBytes();
+            pregunta = new DatagramPacket(buffer, buffer.length, direccionServidor, PUERTO_SERVIDOR);
+            socketUDP.send(pregunta);
 
+//__________Termina primer envío______________________________//
             //Preparo la respuesta
             DatagramPacket peticion = new DatagramPacket(buffer, buffer.length);
 
@@ -63,7 +76,7 @@ public class Cliente extends Thread {
 
             //cierro el socket
             socketUDP.close();
-            
+
             //Obtengo la localizacion de localhost
 //            InetAddress direccionServidor = InetAddress.getByName("localhost");
 //
@@ -107,9 +120,9 @@ public class Cliente extends Thread {
         System.out.println("image created");
     }
 
-    public int fileSize(String ImageName) throws IOException {
+    public long fileSize(String ImageName) throws IOException {
         File fnew = new File(ImageName);
-        int size = (int) fnew.length();
+        long size = fnew.length();
         return size;
     }
 }

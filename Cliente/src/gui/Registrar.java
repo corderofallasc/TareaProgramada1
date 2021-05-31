@@ -5,17 +5,25 @@
  */
 package gui;
 
+import cliente.Cliente;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import sql.Conexion;
+
 /**
  *
  * @author Caro
  */
 public class Registrar extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Registrar
-     */
+    Cliente cliente;
+    Conexion conexion;
+    String user;
+    String password;
     public Registrar() {
         initComponents();
+        conexion=new Conexion();
+        user="";
+        password="";
     }
 
     /**
@@ -44,12 +52,22 @@ public class Registrar extends javax.swing.JFrame {
         });
 
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jlUsuario.setText("Usuario: ");
 
         jLabel2.setText("Contraseña: ");
 
         jbIniciar.setText("Iniciar Sesión");
+        jbIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jlContrasenaLayout = new javax.swing.GroupLayout(jlContrasena);
         jlContrasena.setLayout(jlContrasenaLayout);
@@ -59,21 +77,18 @@ public class Registrar extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE)
                 .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jlContrasenaLayout.createSequentialGroup()
-                        .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jlContrasenaLayout.createSequentialGroup()
-                                .addComponent(jlUsuario)
-                                .addGap(31, 31, 31)
-                                .addComponent(jUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jlContrasenaLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(65, 65, 65))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlContrasenaLayout.createSequentialGroup()
+                        .addComponent(jlUsuario)
+                        .addGap(31, 31, 31)
+                        .addComponent(jUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jlContrasenaLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jlContrasenaLayout.createSequentialGroup()
                         .addComponent(jbRegistrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGap(31, 31, 31)
+                        .addComponent(jbIniciar)))
+                .addGap(46, 46, 46))
         );
         jlContrasenaLayout.setVerticalGroup(
             jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,6 +129,43 @@ public class Registrar extends javax.swing.JFrame {
     private void jUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jUserActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        user=jUser.getText();
+        password=String.valueOf(jPassword.getPassword());
+        if (user.length() == 0 || password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar los campos");
+        } else {
+            int flag = conexion.Registrar(user, password);
+            if (flag == 1) {
+                JOptionPane.showMessageDialog(null, "Registrado con éxito");
+                jPassword.setText("");
+                jUser.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema al registrar, no registrado");
+            }
+        }
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
+        user=jUser.getText();
+        password=String.valueOf(jPassword.getPassword());
+        if (user.length() == 0 || password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar los campos");
+        } else {
+            int flag = conexion.IniciarSesion(user, password);
+            if (flag == 1) {
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+                jPassword.setText("");
+                jUser.setText("");
+                this.dispose();
+                cliente=new Cliente(user);
+                cliente.run();
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema al iniciar sesión");
+            }
+        }
+    }//GEN-LAST:event_jbIniciarActionPerformed
 
     /**
      * @param args the command line arguments
