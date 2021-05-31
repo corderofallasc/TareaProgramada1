@@ -3,19 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cliente;
+package gui;
+
+import cliente.Cliente;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import sql.Conexion;
 
 /**
  *
  * @author Caro
  */
 public class Registrar extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Registrar
-     */
+    Cliente cliente;
+    Conexion conexion;
+    String user;
+    String password;
     public Registrar() {
         initComponents();
+        conexion=new Conexion();
+        user="";
+        password="";
     }
 
     /**
@@ -28,8 +36,8 @@ public class Registrar extends javax.swing.JFrame {
     private void initComponents() {
 
         jlContrasena = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jUser = new javax.swing.JTextField();
+        jPassword = new javax.swing.JPasswordField();
         jbRegistrar = new javax.swing.JButton();
         jlUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -37,19 +45,29 @@ public class Registrar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jUserActionPerformed(evt);
             }
         });
 
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jlUsuario.setText("Usuario: ");
 
         jLabel2.setText("Contraseña: ");
 
         jbIniciar.setText("Iniciar Sesión");
+        jbIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jlContrasenaLayout = new javax.swing.GroupLayout(jlContrasena);
         jlContrasena.setLayout(jlContrasenaLayout);
@@ -59,33 +77,30 @@ public class Registrar extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE)
                 .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jlContrasenaLayout.createSequentialGroup()
-                        .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jlContrasenaLayout.createSequentialGroup()
-                                .addComponent(jlUsuario)
-                                .addGap(31, 31, 31)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jlContrasenaLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(65, 65, 65))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlContrasenaLayout.createSequentialGroup()
+                        .addComponent(jlUsuario)
+                        .addGap(31, 31, 31)
+                        .addComponent(jUser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jlContrasenaLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jlContrasenaLayout.createSequentialGroup()
                         .addComponent(jbRegistrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGap(31, 31, 31)
+                        .addComponent(jbIniciar)))
+                .addGap(46, 46, 46))
         );
         jlContrasenaLayout.setVerticalGroup(
             jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jlContrasenaLayout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlUsuario))
                 .addGap(31, 31, 31)
                 .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jlContrasenaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbRegistrar)
@@ -111,9 +126,46 @@ public class Registrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jUserActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        user=jUser.getText();
+        password=String.valueOf(jPassword.getPassword());
+        if (user.length() == 0 || password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar los campos");
+        } else {
+            int flag = conexion.Registrar(user, password);
+            if (flag == 1) {
+                JOptionPane.showMessageDialog(null, "Registrado con éxito");
+                jPassword.setText("");
+                jUser.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema al registrar, no registrado");
+            }
+        }
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
+        user=jUser.getText();
+        password=String.valueOf(jPassword.getPassword());
+        if (user.length() == 0 || password.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debe rellenar los campos");
+        } else {
+            int flag = conexion.IniciarSesion(user, password);
+            if (flag == 1) {
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+                jPassword.setText("");
+                jUser.setText("");
+                this.dispose();
+                cliente=new Cliente(user);
+                cliente.run();
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema al iniciar sesión");
+            }
+        }
+    }//GEN-LAST:event_jbIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,8 +204,8 @@ public class Registrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPassword;
+    private javax.swing.JTextField jUser;
     private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbRegistrar;
     private javax.swing.JPanel jlContrasena;
