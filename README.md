@@ -28,7 +28,7 @@ Paso 1. Ir a la página oficial de descarga y seleccionar el IDE Apache Netbeans
 	En la parte derecha superior, se selecciona el idioma o bien utilizar el archivo zip.
    	Haga clic en el botón de descarga. 
 	
-![](https://raw//github.com/corderofallasc/TareaProgramada1/master/Imagenes/1.JPG)
+![](https://github.com/corderofallasc/TareaProgramada1/blob/master/Imagenes/1.JPG)
 
 Paso 2. Instalar el JDK antes de empezar la instalar el IDE. Para ello nos vamos a la página oficial de java JDK 11. Se da clic en descargar, se ejecuta el instalador y le aceptar y continuar hasta que finalice.
 	Paso 3. Descomprimir la carpeta de descarga de Netbeans y pasar la carpeta Descomprimida a Disco Local C.
@@ -47,7 +47,7 @@ Paso 2. Selecciona iniciar repositorio con un README y da clic en crear reposito
 
 Paso 1. Abre Netbeans y se dirige a la navegación Team, se dirige a la ruta Git/Clone/
 
-![](https://raw//github.com/corderofallasc/TareaProgramada1/master/Imagenes/2.JPG)
+![](https://github.com/corderofallasc/TareaProgramada1/blob/master/Imagenes/2.JPG)
 
 Paso 2. Debe poner el link del repositorio y las credenciales del mismo, 
 	así como poner la ruta donde se clonará el repositorio, a continuación, dar clic en “Next” y por último en el botón “Finish” 
@@ -75,7 +75,7 @@ Paso 8. Ir al proyecto, en el paquete "Libraries", le damos clic derecho "Add JA
 	
 Paso 9. Seleccionamos la librería mssql-jdbc-9.2.1.jre.8
 
-![](https://raw//github.com/corderofallasc/TareaProgramada1/master/Imagenes/3.JPG)
+![](https://github.com/corderofallasc/TareaProgramada1/blob/master/Imagenes/3.JPG)
 
 
 
