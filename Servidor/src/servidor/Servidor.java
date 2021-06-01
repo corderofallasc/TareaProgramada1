@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -127,5 +128,19 @@ public class Servidor extends Thread {
         }
         result = new String(salida);
         return result;
+    }
+    
+    public byte[] joinByteArray(ArrayList<byte[]> list){
+        byte[] imageData = new byte[1000000];
+        byte[] temp = new byte[10000];
+        int contador=0;
+        for (int i = 0; i < list.size() ; i++) {
+            temp = list.get(i);
+            for (int j = 0; j < temp.length; j++) {
+                imageData[contador] = temp[j];
+                contador +=1;
+            }
+        }
+        return imageData;
     }
 }
