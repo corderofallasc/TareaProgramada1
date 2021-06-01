@@ -19,12 +19,16 @@ public class Registrar extends javax.swing.JFrame {
     Conexion conexion;
     String user;
     String password;
+    
     public Registrar() {
         initComponents();
+        setLocationRelativeTo(null);
         conexion=new Conexion();
         user="";
         password="";
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +39,7 @@ public class Registrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlContrasena = new javax.swing.JPanel();
+        javax.swing.JPanel jlContrasena = new javax.swing.JPanel();
         jUser = new javax.swing.JTextField();
         jPassword = new javax.swing.JPasswordField();
         jbRegistrar = new javax.swing.JButton();
@@ -44,6 +48,10 @@ public class Registrar extends javax.swing.JFrame {
         jbIniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jlContrasena.setBackground(new java.awt.Color(153, 255, 153));
+        jlContrasena.setForeground(new java.awt.Color(255, 255, 255));
+        jlContrasena.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +206,7 @@ public class Registrar extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Registrar().setVisible(true);
+                
             }
         });
     }
@@ -208,7 +217,6 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JTextField jUser;
     private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbRegistrar;
-    private javax.swing.JPanel jlContrasena;
     private javax.swing.JLabel jlUsuario;
     // End of variables declaration//GEN-END:variables
 }
