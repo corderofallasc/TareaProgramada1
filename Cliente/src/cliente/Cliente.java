@@ -24,17 +24,18 @@ public class Cliente extends Thread {
     public Cliente(String userName) {
         this.userName = userName;
     }
+    
+    public String getUserName(){
+        return this.userName;
+    }
 
     @Override
     public void run() {
-        //buffer donde se almacenara los mensajes
-//            byte[] buffer = new byte[5000000];
-        //puerto del servidor
         final int PUERTO_SERVIDOR = 5000;
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(fileChooser);
         filePath = fileChooser.getSelectedFile().getAbsolutePath();
-//        filePath = "c:/Pics/author-image1.jpg";
+        createFolder();
         byte[] buffer = new byte[100000];
         byte[] buffer2 = new byte[100000];
         try {
@@ -76,24 +77,6 @@ public class Cliente extends Thread {
 
             //cierro el socket
             socketUDP.close();
-
-            //Obtengo la localizacion de localhost
-//            InetAddress direccionServidor = InetAddress.getByName("localhost");
-//
-//            //Creo el socket de UDP
-//            DatagramSocket socketUDP = new DatagramSocket();
-//
-//            String mensaje = "¡Hola mundo desde el cliente!";
-//
-//            //Convierto el mensaje a bytes
-//            buffer = extractBytes("c:/Pics/author-image1.jpg");
-//
-//            //Creo un datagrama
-//            DatagramPacket pregunta = new DatagramPacket(buffer, buffer.length, direccionServidor, PUERTO_SERVIDOR);
-//
-//            //Lo envio con send
-//            System.out.println("Envio el datagrama");
-//            socketUDP.send(pregunta);
         } catch (SocketException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnknownHostException ex) {
@@ -125,4 +108,17 @@ public class Cliente extends Thread {
         long size = fnew.length();
         return size;
     }
+    
+    public void createFolder() {
+        String OrigenCarpeta = "C:\\TareaProgramada1\\Servidor\\" + userName;
+        File directorio = new File(OrigenCarpeta);
+        if (!directorio.exists()) {
+            if (directorio.mkdir()) {
+                System.out.println("Directorio creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        }
+    }
+    
 }

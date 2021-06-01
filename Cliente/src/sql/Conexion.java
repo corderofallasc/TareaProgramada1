@@ -11,6 +11,7 @@ public class Conexion {
 
     public int Registrar(String user, String password) {
         try {
+            int retorno=0;
             Connection sql = getConnection();
 
             // Llamada al procedimiento almacenado
@@ -19,9 +20,8 @@ public class Conexion {
             // Parametro 1 del procedimiento almacenado
             callableStatement.setString(1, user);
             callableStatement.setString(2, password);
-
             // Ejecuta el procedimiento almacenado
-            callableStatement.execute();
+            callableStatement.execute();;
             sql.close();
             return 1;
         } catch (SQLException ex) {
@@ -32,19 +32,22 @@ public class Conexion {
     
     public int IniciarSesion(String user, String password) {
         try {
+            int retorno=0;
             Connection sql = getConnection();
 
             // Llamada al procedimiento almacenado
-            CallableStatement callableStatement = sql.prepareCall("{call LoginUser (?,?)}");
+            CallableStatement callableStatement = sql.prepareCall("{call LoginUser (?,?,?)}");
 
             // Parametro 1 del procedimiento almacenado
             callableStatement.setString(1, user);
             callableStatement.setString(2, password);
+            callableStatement.registerOutParameter(3, java.sql.Types.INTEGER);
 
             // Ejecuta el procedimiento almacenado
             callableStatement.execute();
+            retorno = callableStatement.getInt(3);
             sql.close();
-            return 1;
+            return retorno;
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             return 0;
