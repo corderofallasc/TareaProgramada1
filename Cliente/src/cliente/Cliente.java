@@ -10,6 +10,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -23,10 +24,6 @@ public class Cliente extends Thread {
 
     public Cliente(String userName) {
         this.userName = userName;
-    }
-    
-    public String getUserName(){
-        return this.userName;
     }
 
     @Override
@@ -119,6 +116,39 @@ public class Cliente extends Thread {
                 System.out.println("Error al crear directorio");
             }
         }
+    }
+    public ArrayList<byte[]> divide(byte[] imagenCompleta) throws IOException {
+        ArrayList<byte[]> list = new ArrayList<>();
+        System.out.println("Tamaño del array de la imagen: "+imagenCompleta.length);
+        byte[] buffer = new byte[10000];
+        int len = 0;
+        int resto = imagenCompleta.length % 10000;
+        System.out.println("Resto: "+resto);
+        if (resto == imagenCompleta.length) {
+            len = 1;
+        } else if (resto == 0) {
+            len = (imagenCompleta.length / 10000);
+        } else {
+            len = (imagenCompleta.length / 10000) + 1;
+        }
+        System.out.println("Cantidad de partes "+len);
+        int contador = 0;
+        for (int i = 0; i < imagenCompleta.length; i++) {
+            buffer[i] = imagenCompleta[i];
+            //el archivo es menor a 100000 bytes
+            if (len == 1) {
+                if (contador == imagenCompleta.length) {
+                    list.add(buffer);
+                }
+            }
+            if (contador == 9999 && len != 1) {
+                list.add(buffer);
+                buffer = new byte[100000];
+                contador = 0;
+            }
+            contador += 1;
+        }
+        return list;
     }
     
 }

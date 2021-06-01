@@ -60,8 +60,8 @@ public class Conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String connectionString = "jdbc:sqlserver://localhost:1433;"
                     + "databaseName=ProyectoRedes1;"
-                    + "user=caro;"
-                    + "password=sandra0102caro;";
+                    + "user=corde;"
+                    + "password=criscf02012000;";
             Connection con = DriverManager.getConnection(connectionString);
             return con;
         } catch (SQLException ex) {
