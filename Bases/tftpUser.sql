@@ -33,12 +33,19 @@ END
 
 /*Procedimiento almacenado Iniciar Sesion*/
 
-CREATE PROCEDURE LoginUser   
+CREATE PROCEDURE [dbo].[LoginUser]   
     @username nvarchar(50),   
-    @passwordUser nvarchar(50)  
+    @passwordUser nvarchar(50),
+    @result int OUTPUT
 AS   
 BEGIN
-    SELECT username, passwordUser
-    FROM tftpUser  
-    WHERE username = @username AND passwordUser = @passwordUser;    
+    IF EXISTS (SELECT username, passwordUser FROM tftpUser WHERE username = @username AND passwordUser = @passwordUser)
+		BEGIN	
+			SET @result = 1;
+		END
+	ELSE 
+		BEGIN
+			SET @result = 0;
+		END
 END
+GO

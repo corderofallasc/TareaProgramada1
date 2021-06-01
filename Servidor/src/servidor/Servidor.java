@@ -12,6 +12,8 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class Servidor extends Thread {
 
@@ -44,27 +46,32 @@ public class Servidor extends Thread {
                 peticion = new DatagramPacket(information, information.length);
                 //Recibo el datagrama
                 socketUDP.receive(peticion);
-                userName = new String(peticion.getData());
-                System.out.println("Recibo el usuario " + userName);
-
-                File directorio = new File(userName);
-                directorio.mkdir();
+                byte[] userNameArray = new byte[peticion.getLength()];
+                userNameArray = peticion.getData();
+                userName = new String(userNameArray);
+                String usuario = deleteEmptyBytes(userName);
+                System.out.println("Recibo del usuario " + usuario + " " + usuario.length());
+                
+                String ruta = usuario+"/";
+                String imageName = JOptionPane.showInputDialog("Ingrese el nombre de la imagen");
+                ruta += imageName+"‪.";
+                String formato =JOptionPane.showInputDialog("Ingrese el formato de la imagen");
+                ruta += formato;
                 //Convierto los bytes en una imagen
-                convertBytesInImage(buffer);
-
+                convertBytesInImage(buffer, formato, ruta);
                 //Obtengo el puerto y la direccion de origen
                 //Sino se quiere responder, no es necesario
                 int puertoCliente = peticion.getPort();
                 InetAddress direccion = peticion.getAddress();
 
-                String mensaje = "¡Hola mundo desde el servidor!";
+                String mensaje = "Imagen recibida!";
                 buffer = mensaje.getBytes();
 
                 //creo el datagrama
                 DatagramPacket respuesta = new DatagramPacket(buffer, buffer.length, direccion, puertoCliente);
 
                 //Envio la información
-                System.out.println("Envio la informacion del cliente");
+                System.out.println("Envío la confirmación al cliente");
                 socketUDP.send(respuesta);
 
             }
@@ -86,22 +93,39 @@ public class Servidor extends Thread {
         return (imageInByte);
     }
 
-    public void convertBytesInImage(byte[] data) throws IOException {
+    public void convertBytesInImage(byte[] data, String formato, String ruta) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(data);
         BufferedImage bImage2 = ImageIO.read(bis);
-        ImageIO.write(bImage2, "jpg", new File("output.jpg"));
-        System.out.println("image created");
+        ImageIO.write(bImage2, formato, new File(ruta));
+        System.out.println("Imagen creada");
     }
 
     public void createFolder(String userName) {
-        String OrigenCarpeta = "C:\\TareaProgramada1\\Servidor\\" + userName;
         File directorio = new File(userName);
         if (!directorio.exists()) {
-            if (directorio.mkdir()) {
-                System.out.println("Multiples directorios fueron creados");
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
             } else {
-                System.out.println("Error al crear directorios");
+                System.out.println("Error al crear directorio");
             }
         }
+    }
+
+    public String deleteEmptyBytes(String userName) {
+        String result = "";
+        int size = 0;
+        byte[] user = userName.getBytes();
+
+        for (int n = 0; n < user.length; n++) {
+            if (user[n] != 0) {
+                size += 1;
+            }
+        }
+        byte[] salida = new byte[size];
+        for (int n = 0; n < size; n++) {
+            salida[n] = user[n];
+        }
+        result = new String(salida);
+        return result;
     }
 }
